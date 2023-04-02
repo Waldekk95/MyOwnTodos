@@ -1,0 +1,7 @@
+.list {
+  width: 50%;
+  min-height: 100px;
+  padding: 10px;
+  margin: 30px auto;
+  background-color: rgb(156, 77, 77);
+}
