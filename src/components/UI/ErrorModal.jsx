@@ -10,7 +10,7 @@ const ErrorModal = (props) => {
         <p>{props.message}</p>
       </div>
       <footer>
-        <button>Rozumiem</button>
+        <button>Okej</button>
       </footer>
     </div>
   );
