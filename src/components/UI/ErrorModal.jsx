@@ -1,11 +1,9 @@
 import "./ErrorModal.css";
 
 const ErrorModal = (props) => {
-
-
   return (
     <>
-    <div className="backdrop" onClick={props.onConfirm}></div>
+      <div className="backdrop" onClick={props.onConfirm}></div>
       <div className="modal">
         <header className="modal-header">
           <h2>{props.title}</h2>

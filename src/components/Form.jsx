@@ -9,6 +9,7 @@ const Form = (props) => {
   const [error, setError] = useState();
 
   const addItem = (event) => {
+    event.preventDefault();
     if (userName.trim().length === 0) {
       setError({
         title: "Wprowadź nazwę",
@@ -23,7 +24,7 @@ const Form = (props) => {
       });
       return;
     } else {
-      event.preventDefault();
+      // event.preventDefault();
       props.onAddItem(userName, userAge);
       setUserName("");
       setUserAge("");
