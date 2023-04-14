@@ -1,7 +1,8 @@
 import "./List.css";
 import Item from "./Item";
+import React from "react";
 
-const List = (props) => {
+const List = (props: { items: any[]; }) => {
   // const users = [
   //   {
   //     name: "Adam",

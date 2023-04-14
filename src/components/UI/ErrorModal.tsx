@@ -1,6 +1,14 @@
+import React from "react";
 import "./ErrorModal.css";
 
-const ErrorModal = (props) => {
+type Props = {
+  onConfirm: any;
+  title: string;
+  message: number;
+  onClick: MouseEvent;
+};
+
+const ErrorModal = (props: Props) => {
   return (
     <>
       <div className="backdrop" onClick={props.onConfirm}></div>

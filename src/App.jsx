@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "./components/Form";
 import List from "./components/List";
 
-function App() {
+function App () {
   const [itemList, setItemList] = useState([]);
 
   console.log(itemList);

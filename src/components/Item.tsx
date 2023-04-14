@@ -1,6 +1,13 @@
+import React from "react";
 import "./Item.css";
 
-const Item = (props) => {
+type Props = {
+  id: string,
+  userName: string,
+  userAge: number,
+}
+
+const Item = (props: Props) => {
   return (
     <li className="item" key={props.id}>
       {`${props.userName} ma (${props.userAge}) lat`}
