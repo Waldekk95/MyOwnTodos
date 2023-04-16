@@ -2,10 +2,10 @@ import React from "react";
 import "./Item.css";
 
 type Props = {
-  id: string,
-  userName: string,
-  userAge: number,
-}
+  id: string;
+  userName: string;
+  userAge: number;
+};
 
 const Item = (props: Props) => {
   return (

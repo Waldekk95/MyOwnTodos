@@ -2,32 +2,31 @@ import "./List.css";
 import Item from "./Item";
 import React from "react";
 
-const List = (props: { items: any[]; }) => {
-  // const users = [
-  //   {
-  //     name: "Adam",
-  //     age: 19,
-  //     id: "A1",
-  //   },
-  //   {
-  //     name: "Ela",
-  //     age: 25,
-  //     id: "A2",
-  //   },
-  //   {
-  //     name: "Grześ",
-  //     age: 34,
-  //     id: "A3",
-  //   },
-  // ];
+const List = (props: { items: any[] }) => {
+  const basicTodos = [
+    {
+      name: "Zrobic zakupy",
+      age: 19,
+      id: "A1",
+    },
+    {
+      name: "Poprzątać dom",
+      age: 25,
+      id: "A2",
+    },
+  ];
 
   return (
     <ul className="list">
-      {/* {users.map((user) => {
+      {basicTodos.map((basicTodo) => {
         return (
-          <Item userName={user.name} userAge={user.age} id={user.id}></Item>
+          <Item
+            userName={basicTodo.name}
+            userAge={basicTodo.age}
+            id={basicTodo.id}
+          ></Item>
         );
-      })} */}
+      })}
       {props.items.map((item) => {
         return (
           <Item userName={item.name} userAge={item.age} id={item.id}></Item>

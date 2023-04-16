@@ -1,14 +1,15 @@
 import { useState } from "react";
+import React from "react";
 import "./Form.css";
 
 import ErrorModal from "./UI/ErrorModal";
 
-const Form = (props) => {
+const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
   const [error, setError] = useState();
 
-  const addItem = (event) => {
+  const addItem = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     if (userName.trim().length === 0) {
       setError({
@@ -17,14 +18,13 @@ const Form = (props) => {
       });
       return;
     }
-    if (userAge < 0.01) {
+    if (userAge < "0") {
       setError({
         title: "Błędny wiek",
         message: "Wprowadź prawidłowy wiek (większy od 0)",
       });
       return;
     } else {
-      // event.preventDefault();
       props.onAddItem(userName, userAge);
       setUserName("");
       setUserAge("");
