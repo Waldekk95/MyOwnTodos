@@ -21,6 +21,7 @@ const List = (props: { items: any[] }) => {
       {basicTodos.map((basicTodo) => {
         return (
           <Item
+            key={basicTodo.id}
             userName={basicTodo.name}
             userAge={basicTodo.age}
             id={basicTodo.id}
@@ -29,7 +30,7 @@ const List = (props: { items: any[] }) => {
       })}
       {props.items.map((item) => {
         return (
-          <Item userName={item.name} userAge={item.age} id={item.id}></Item>
+          <Item key={item.id} userName={item.name} userAge={item.age} id={item.id}></Item>
         );
       })}
     </ul>

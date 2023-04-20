@@ -4,10 +4,15 @@ import "./Form.css";
 
 import ErrorModal from "./UI/ErrorModal";
 
+type FormError = {
+  title: string,
+  message: string,
+}
+
 const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
-  const [error, setError] = useState();
+  const [error, setError] = useState<FormError | null>(null);
 
   const addItem = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -32,7 +37,7 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
   };
 
   const errorHandler = () => {
-    setError(false);
+    setError(null);
   };
 
   return (

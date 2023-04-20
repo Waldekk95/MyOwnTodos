@@ -4,8 +4,8 @@ import "./ErrorModal.css";
 type Props = {
   onConfirm: any;
   title: string;
-  message: number;
-  onClick: MouseEvent;
+  message: string;
+  onClick?: MouseEvent;
 };
 
 const ErrorModal = (props: Props) => {
