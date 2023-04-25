@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -7,6 +9,5 @@ html {
 }
 
 body {
-  margin: 0;
   background-color: rgb(44, 44, 44);
 }

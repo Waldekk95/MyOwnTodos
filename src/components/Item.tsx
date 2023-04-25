@@ -10,7 +10,7 @@ type Props = {
 const Item = (props: Props) => {
   return (
     <li className="item" key={props.id}>
-      {`${props.userName} ma (${props.userAge}) lat`}
+      {`${props.userName} (${props.userAge} minut)`}
       <button className="item-button">X</button>
     </li>
   );

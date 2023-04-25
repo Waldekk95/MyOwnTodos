@@ -6,12 +6,12 @@ const List = (props: { items: any[] }) => {
   const basicTodos = [
     {
       name: "Zrobic zakupy",
-      age: 19,
+      age: 30,
       id: "A1",
     },
     {
       name: "Poprzątać dom",
-      age: 25,
+      age: 45,
       id: "A2",
     },
   ];

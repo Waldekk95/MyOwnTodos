@@ -19,14 +19,14 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
     if (userName.trim().length === 0) {
       setError({
         title: "Wprowadź nazwę",
-        message: "Nazwa nie może być pusta",
+        message: "Nazwa zadania nie może być pusta",
       });
       return;
     }
     if (userAge < "0") {
       setError({
-        title: "Błędny wiek",
-        message: "Wprowadź prawidłowy wiek (większy od 0)",
+        title: "Błędny czas",
+        message: "Wprowadź prawidłowy czas (większy od 0)",
       });
       return;
     } else {
@@ -50,7 +50,7 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
         ></ErrorModal>
       )}
       <form className="form" onSubmit={addItem}>
-        <label className="form-input__name">Username</label>
+        <label className="form-input__name">Nazwa Zadania</label>
         <input
           className="form-input"
           type="text"
@@ -59,7 +59,7 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
             setUserName(evt.target.value);
           }}
         ></input>
-        <label className="form-input__name">Age (years)</label>
+        <label className="form-input__name">Czas wykonania zadania (minuty)</label>
         <input
           className="form-input"
           type="number"
@@ -69,7 +69,7 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
           }}
         ></input>
         <button className="form-button" type="submit">
-          Add User
+          Dodaj zadanie
         </button>
       </form>
     </>
