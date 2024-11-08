@@ -12,6 +12,7 @@
 }
 
 .form-input__name {
+  display: inline-block;
   font-weight: bold;
   padding: 0 15px;
 }

@@ -3,15 +3,18 @@ import "./Item.css";
 
 type Props = {
   id: string;
-  userName: string;
-  userAge: number;
+  todosName: string;
+  todosTime: number;
+  onDelete: (id: string) => void;
 };
 
-const Item = (props: Props) => {
+const Item = ({ id, todosName, todosTime, onDelete }: Props) => {
   return (
-    <li className="item" key={props.id}>
-      {`${props.userName} (${props.userAge} minut)`}
-      <button className="item-button">X</button>
+    <li className="item" key={id}>
+      {`${todosName} (${todosTime} minut)`}
+      <button className="item-button" onClick={() => onDelete(id)}>
+        X
+      </button>
     </li>
   );
 };

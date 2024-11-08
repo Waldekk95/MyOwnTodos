@@ -13,6 +13,7 @@ function App() {
   const [itemList, setItemList] = useState<Item[]>([]);
 
   console.log(itemList);
+  console.log('Dlaczego to się wykonuje 2 razy?')
   const addUserHandler = (uName: any, uAge: any) => {
     setItemList((prevItemsList) => {
       return [

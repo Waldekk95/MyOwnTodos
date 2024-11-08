@@ -10,29 +10,29 @@ type FormError = {
 }
 
 const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
-  const [userName, setUserName] = useState("");
-  const [userAge, setUserAge] = useState("");
+  const [todosName, setTodosName] = useState("");
+  const [todosTime, setTodosTime] = useState("");
   const [error, setError] = useState<FormError | null>(null);
 
   const addItem = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (userName.trim().length === 0) {
+    if (todosName.trim().length === 0) {
       setError({
         title: "Wprowadź nazwę",
         message: "Nazwa zadania nie może być pusta",
       });
       return;
     }
-    if (userAge < "0") {
+    if (todosTime < "0") {
       setError({
         title: "Błędny czas",
         message: "Wprowadź prawidłowy czas (większy od 0)",
       });
       return;
     } else {
-      props.onAddItem(userName, userAge);
-      setUserName("");
-      setUserAge("");
+      props.onAddItem(todosName, todosTime);
+      setTodosName("");
+      setTodosTime("");
     }
   };
 
@@ -54,18 +54,18 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
         <input
           className="form-input"
           type="text"
-          value={userName}
+          value={todosName}
           onChange={(evt) => {
-            setUserName(evt.target.value);
+            setTodosName(evt.target.value);
           }}
         ></input>
         <label className="form-input__name">Czas wykonania zadania (minuty)</label>
         <input
           className="form-input"
           type="number"
-          value={userAge}
+          value={todosTime}
           onChange={(evt) => {
-            setUserAge(evt.target.value);
+            setTodosTime(evt.target.value);
           }}
         ></input>
         <button className="form-button" type="submit">
