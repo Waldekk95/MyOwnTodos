@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import "./ErrorModal.css";
 
 type Props = {
