@@ -31,3 +31,8 @@
 .modal-content {
   padding: 1rem;
 }
+
+.modal-button {
+  padding: 5px 15px;
+  margin-top: 10px;
+}

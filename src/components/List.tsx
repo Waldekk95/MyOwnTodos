@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 
 const List = (props: { items: any[] }) => {
   const [todos, setTodos] = useState([
-    { name: "Zrobic zakupy", age: 30, id: "A1" },
-    { name: "Poprzątać dom", age: 45, id: "A2" },
+    { name: "Zrobic zakupy", time: 45, id: "A1" },
+    { name: "Odkurzyć dom", time: 30, id: "A2" },
   ]);
 
   // Efekt, który aktualizuje stan przy dodaniu nowego elementu
@@ -24,15 +24,17 @@ const List = (props: { items: any[] }) => {
 
   return (
     <ul className="list">
+      <h3 className="list-title">List zadań</h3>
       {todos.map((todo) => (
         <Item
           key={todo.id}
           todosName={todo.name}
-          todosTime={todo.age}
+          todosTime={todo.time}
           id={todo.id}
           onDelete={deleteItemHandler}
         />
       ))}
+      <p>Suma wszystkich zadań: {todos.length}</p>
     </ul>
   );
 };

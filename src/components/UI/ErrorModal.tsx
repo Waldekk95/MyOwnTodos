@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./ErrorModal.css";
 
 type Props = {
@@ -18,10 +18,10 @@ const ErrorModal = (props: Props) => {
         </header>
         <div className="modal-content">
           <p>{props.message}</p>
+          <button className="modal-button" onClick={props.onConfirm}>
+            Okej
+          </button>
         </div>
-        <footer>
-          <button onClick={props.onConfirm}>Okej</button>
-        </footer>
       </div>
     </>
   );
