@@ -11,7 +11,7 @@ if (rootElement) {
   root.render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 } else {
   console.error("Nie znaleziono elementu z ID 'root'.");

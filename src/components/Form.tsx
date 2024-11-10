@@ -5,9 +5,9 @@ import "./Form.css";
 import ErrorModal from "./UI/ErrorModal";
 
 type FormError = {
-  title: string,
-  message: string,
-}
+  title: string;
+  message: string;
+};
 
 const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
   const [todosName, setTodosName] = useState("");
@@ -59,7 +59,9 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
             setTodosName(evt.target.value);
           }}
         ></input>
-        <label className="form-input__name">Czas wykonania zadania (minuty)</label>
+        <label className="form-input__name">
+          Szacowany czas na zadanie (minuty)
+        </label>
         <input
           className="form-input"
           type="number"
