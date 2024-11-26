@@ -4,27 +4,46 @@ import React, { useState, useEffect } from "react";
 
 const List = (props: { items: any[] }) => {
   const [todos, setTodos] = useState([
-    { name: "Zrobic zakupy", time: 45, id: "A1" },
-    { name: "Odkurzyć dom", time: 30, id: "A2" },
+    { name: "Odkurzyć", time: 30, id: "A1" },
+    { name: "Zrobić todosa", time: 15, id: "A2" },
+    { name: "Bezbłędnie pisać", time: 60, id: "A3" },
+    { name: "Napisać dobrą apkę w React", time: 55, id: "A4" },
+    { name: "Ambitnie dzialać dalej", time: 5, id: "A5" },
+    { name: "Wykonać stage 4 i 5", time: 35, id: "A6" },
   ]);
 
-  // Efekt, który aktualizuje stan przy dodaniu nowego elementu
   useEffect(() => {
     if (props.items.length > 0) {
-      // Dodajemy tylko ostatni dodany element z props.items
       const newItem = props.items[props.items.length - 1];
       setTodos((prevTodos) => [...prevTodos, newItem]);
     }
   }, [props.items]);
 
-  // Funkcja do usuwania elementu
+  const sortTodosByName = () => {
+    const sortTodos = [...todos];
+    sortTodos.sort((a, b) => a.name.localeCompare(b.name));
+    setTodos(sortTodos);
+  };
+
+  const sortTodosByTime = () => {
+    const sortTodos = [...todos];
+    sortTodos.sort((a, b) => a.time.toString().localeCompare(b.time.toString()));
+    setTodos(sortTodos);
+  };
+
   const deleteItemHandler = (id: string) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
   return (
     <ul className="list">
-      <h3 className="list-title">List zadań</h3>
+      <h3 className="list-title">Lista zadań</h3>
+      <button className="form-button" onClick={() => sortTodosByName()} >
+        Sortuj po nazwie
+      </button>
+      <button className="form-button" onClick={() => sortTodosByTime()} >
+        Sortuj po czasie trwania
+      </button>
       {todos.map((todo) => (
         <Item
           key={todo.id}
@@ -34,7 +53,7 @@ const List = (props: { items: any[] }) => {
           onDelete={deleteItemHandler}
         />
       ))}
-      <p>Suma wszystkich zadań: {todos.length}</p>
+      <h3>Suma zadań do zrobienia: <b>{todos.length}</b></h3>
     </ul>
   );
 };

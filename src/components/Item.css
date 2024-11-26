@@ -5,9 +5,45 @@
   list-style: none;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 0.9em;
+  border-radius: 10px;
+  text-wrap: nowrap;
+}
+
+.item:hover {
+  opacity: 75%;
+  border-color: greenyellow;
+}
+
+.item-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.item-left {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.item-right {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.item-name {
+  padding-left: 10px;
+  text-wrap: balance;
+  max-height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .item-button {
-  text-align: right;
+  margin-left: 5px;
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
 }
