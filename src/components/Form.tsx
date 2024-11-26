@@ -50,8 +50,9 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
         ></ErrorModal>
       )}
       <form className="form" onSubmit={addItem}>
-        <label className="form-input__name">Nazwa Zadania</label>
+        <label className="form-input__name">Dodaj zadanie</label>
         <input
+          placeholder="Nazwa zadania"
           className="form-input"
           type="text"
           value={todosName}
@@ -60,9 +61,10 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
           }}
         ></input>
         <label className="form-input__name">
-          Szacowany czas na zadanie (minuty)
+          Szacowany czas wykonania zadania
         </label>
         <input
+          placeholder="Wartość liczbowa w minutach"
           className="form-input"
           type="number"
           value={todosTime}
