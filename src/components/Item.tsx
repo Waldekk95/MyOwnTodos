@@ -5,30 +5,80 @@ type Props = {
   id: string;
   todosName: string;
   todosTime: number;
+  isCompleted: boolean;
   onDelete: (id: string) => void;
 };
 
-const Item = ({ id, todosName, todosTime, onDelete }: Props) => {
+const Item = ({
+  id,
+  todosName,
+  todosTime,
+  isCompleted,
+  onDelete,
+  isEditing,
+  editText,
+  editTime,
+  onStartEditing,
+  onSaveEdit,
+  onCancelEdit,
+  onEditChange,
+}: Props & {
+  isEditing: boolean;
+  editText: string;
+  editTime: number;
+  onStartEditing: (id: string, currentText: string, currentTime: number) => void;
+  onSaveEdit: () => void;
+  onCancelEdit: () => void;
+  onEditChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
   return (
     <li className="item" key={id}>
       <div className="item-left">
-        <input type="checkbox" className="item-checkbox"></input>
-        <p className="item-name">
-          {`${todosName} `}
-          {`(${todosTime} minut)`}
-        </p>
+        {isEditing ? (
+          <>
+            <input
+              type="text"
+              value={editText}
+              onChange={onEditChange}
+              className="item-edit-input"
+            />
+            <input
+              type="number"
+              value={editTime}
+              onChange={onEditChange}
+              className="item-edit-input"
+            />
+          </>
+        ) : (
+          <p className="item-name">
+            {`${todosName} `}
+            {`(${todosTime} minut)`}
+          </p>
+        )}
       </div>
       <div className="item-right">
-        <label>Priorytet:
-          <select name="selectedPriority">
-            <option value="low">niski</option>
-            <option value="medium">średni</option>
-            <option value="high">wysoki</option>
-          </select>
-        </label>
-        <button className="item-button" onClick={() => onDelete(id)}>
-          X
-        </button>
+        {isEditing ? (
+          <>
+            <button className="form-button" onClick={onSaveEdit}>
+              Zapisz
+            </button>
+            <button className="form-button" onClick={onCancelEdit}>
+              Anuluj
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className="form-button"
+              onClick={() => onStartEditing(id, todosName, todosTime)}
+            >
+              Edytuj
+            </button>
+            <button className="item-button" onClick={() => onDelete(id)}>
+              X
+            </button>
+          </>
+        )}
       </div>
     </li>
   );
