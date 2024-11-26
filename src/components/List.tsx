@@ -19,14 +19,14 @@ const List = (props: { items: any[] }) => {
     }
   }, [props.items]);
 
-  const [editTodoId, setEditTodoId] = React.useState<string | null>(null);
-  const [editText, setEditText] = React.useState<string>("");
-  const [editTime, setEditTime] = React.useState<number>(0);
+  const [editTodoId, setEditTodoId] = useState<string | null>(null);
+  const [editText, setEditText] = useState<string>("");
+  const [editTime, setEditTime] = useState<number>(0);
 
   const startEditing = (id: string, currentText: string, currentTime: number) => {
     setEditTodoId(id);
     setEditText(currentText);
-    setEditTime(currentTime)
+    setEditTime(currentTime);
   };
 
   const saveEdit = (id: string) => {
@@ -73,24 +73,23 @@ const List = (props: { items: any[] }) => {
       </button>
       {todos.map((todo) => (
         <Item
-          isCompleted={todo.isComplete}
           key={todo.id}
+          id={todo.id}
           todosName={todo.name}
           todosTime={todo.time}
-          id={todo.id}
-          onDelete={deleteItemHandler}
+          isCompleted={todo.isComplete}
           isEditing={editTodoId === todo.id}
           editText={editTodoId === todo.id ? editText : ""}
           editTime={editTodoId === todo.id ? editTime : 0}
+          onDelete={deleteItemHandler}
           onStartEditing={startEditing}
           onSaveEdit={() => saveEdit(todo.id)}
           onCancelEdit={cancelEdit}
-          onEditChange={(e) => setEditText(e.target.value)}
+          onEditTextChange={(e) => setEditText(e.target.value)}
+          onEditTimeChange={(e) => setEditTime(Number(e.target.value))}
         />
       ))}
-      <h3>
-        Suma zadań do zrobienia: <b>{todos.length}</b>
-      </h3>
+      <h3>Suma zadań do zrobienia: <b>{todos.length}</b></h3>
     </ul>
   );
 };

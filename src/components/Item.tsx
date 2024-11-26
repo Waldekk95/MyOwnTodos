@@ -6,7 +6,15 @@ type Props = {
   todosName: string;
   todosTime: number;
   isCompleted: boolean;
+  isEditing: boolean;
+  editText: string;
+  editTime: number;
   onDelete: (id: string) => void;
+  onStartEditing: (id: string, currentText: string, currentTime: number) => void;
+  onSaveEdit: () => void;
+  onCancelEdit: () => void;
+  onEditTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onEditTimeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const Item = ({
@@ -14,39 +22,36 @@ const Item = ({
   todosName,
   todosTime,
   isCompleted,
-  onDelete,
   isEditing,
   editText,
   editTime,
+  onDelete,
   onStartEditing,
   onSaveEdit,
   onCancelEdit,
-  onEditChange,
-}: Props & {
-  isEditing: boolean;
-  editText: string;
-  editTime: number;
-  onStartEditing: (id: string, currentText: string, currentTime: number) => void;
-  onSaveEdit: () => void;
-  onCancelEdit: () => void;
-  onEditChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) => {
+  onEditTextChange,
+  onEditTimeChange,
+}: Props) => {
   return (
     <li className="item" key={id}>
       <div className="item-left">
+        <input type="checkbox" className="item-checkbox"></input>
         {isEditing ? (
           <>
             <input
               type="text"
               value={editText}
-              onChange={onEditChange}
+              onChange={onEditTextChange}
               className="item-edit-input"
+              placeholder="Nowa nazwa"
             />
             <input
               type="number"
               value={editTime}
-              onChange={onEditChange}
+              onChange={onEditTimeChange}
               className="item-edit-input"
+              placeholder="Nowy czas"
+              min="1"
             />
           </>
         ) : (
@@ -59,22 +64,22 @@ const Item = ({
       <div className="item-right">
         {isEditing ? (
           <>
-            <button className="form-button" onClick={onSaveEdit}>
+            <button className="item-button" onClick={onSaveEdit}>
               Zapisz
             </button>
-            <button className="form-button" onClick={onCancelEdit}>
+            <button className="item-button" onClick={onCancelEdit}>
               Anuluj
             </button>
           </>
         ) : (
           <>
             <button
-              className="form-button"
+              className="item-button"
               onClick={() => onStartEditing(id, todosName, todosTime)}
             >
               Edytuj
             </button>
-            <button className="item-button" onClick={() => onDelete(id)}>
+            <button className="item-button_close" onClick={() => onDelete(id)}>
               X
             </button>
           </>

@@ -12,8 +12,7 @@ type Item = {
 function App() {
   const [itemList, setItemList] = useState<Item[]>([]);
 
-  console.log("Dlaczego to się wykonuje 2 razy?");
-  const addUserHandler = (uName: any, uTime: any) => {
+  const addTodosHandler = (uName: any, uTime: any) => {
     setItemList((prevItemsList) => {
       return [
         ...prevItemsList,
@@ -23,7 +22,7 @@ function App() {
   };
   return (
     <div>
-      <Form onAddItem={addUserHandler} />
+      <Form onAddItem={addTodosHandler} />
       <List items={itemList} />
     </div>
   );
