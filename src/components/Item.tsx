@@ -49,7 +49,7 @@ const Item = ({
               type="number"
               value={editTime}
               onChange={onEditTimeChange}
-              className="item-edit-input"
+              className="item-edit-input item-edit-input_number"
               placeholder="Nowy czas"
               min="1"
             />
@@ -85,6 +85,7 @@ const Item = ({
           </>
         )}
       </div>
+      {/* <span className="item-date">{timeWhenAdd}</span> */}
     </li>
   );
 };
