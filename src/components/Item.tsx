@@ -5,30 +5,85 @@ type Props = {
   id: string;
   todosName: string;
   todosTime: number;
+  isCompleted: boolean;
+  isEditing: boolean;
+  editText: string;
+  editTime: number;
   onDelete: (id: string) => void;
+  onStartEditing: (id: string, currentText: string, currentTime: number) => void;
+  onSaveEdit: () => void;
+  onCancelEdit: () => void;
+  onEditTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onEditTimeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Item = ({ id, todosName, todosTime, onDelete }: Props) => {
+const Item = ({
+  id,
+  todosName,
+  todosTime,
+  isCompleted,
+  isEditing,
+  editText,
+  editTime,
+  onDelete,
+  onStartEditing,
+  onSaveEdit,
+  onCancelEdit,
+  onEditTextChange,
+  onEditTimeChange,
+}: Props) => {
   return (
     <li className="item" key={id}>
       <div className="item-left">
         <input type="checkbox" className="item-checkbox"></input>
-        <p className="item-name">
-          {`${todosName} `}
-          {`(${todosTime} minut)`}
-        </p>
+        {isEditing ? (
+          <>
+            <input
+              type="text"
+              value={editText}
+              onChange={onEditTextChange}
+              className="item-edit-input"
+              placeholder="Nowa nazwa"
+            />
+            <input
+              type="number"
+              value={editTime}
+              onChange={onEditTimeChange}
+              className="item-edit-input"
+              placeholder="Nowy czas"
+              min="1"
+            />
+          </>
+        ) : (
+          <p className="item-name">
+            {`${todosName} `}
+            {`(${todosTime} minut)`}
+          </p>
+        )}
       </div>
       <div className="item-right">
-        <label>Priorytet:
-          <select name="selectedPriority">
-            <option value="low">niski</option>
-            <option value="medium">średni</option>
-            <option value="high">wysoki</option>
-          </select>
-        </label>
-        <button className="item-button" onClick={() => onDelete(id)}>
-          X
-        </button>
+        {isEditing ? (
+          <>
+            <button className="item-button" onClick={onSaveEdit}>
+              Zapisz
+            </button>
+            <button className="item-button" onClick={onCancelEdit}>
+              Anuluj
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className="item-button"
+              onClick={() => onStartEditing(id, todosName, todosTime)}
+            >
+              Edytuj
+            </button>
+            <button className="item-button_close" onClick={() => onDelete(id)}>
+              X
+            </button>
+          </>
+        )}
       </div>
     </li>
   );

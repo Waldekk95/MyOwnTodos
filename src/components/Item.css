@@ -41,9 +41,19 @@
   text-overflow: ellipsis;
 }
 
+.item-edit-input {
+  padding: 1px;
+  margin-right: 5px;
+}
+
 .item-button {
+  padding: 0 10px;
   margin-left: 5px;
   cursor: pointer;
+}
+
+.item-button_close {
+  margin-left: 5px;
   width: 22px;
   height: 22px;
 }
