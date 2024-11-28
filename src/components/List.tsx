@@ -4,12 +4,12 @@ import React, { useState, useEffect } from "react";
 
 const List = (props: { items: any[] }) => {
   const [todos, setTodos] = useState([
-    { name: "Odkurzyć", time: 30, isComplete: false, id: "A1" },
-    { name: "Zrobić todosa", time: 15, isComplete: false, id: "A2" },
-    { name: "Bezbłędnie pisać", time: 60, isComplete: false, id: "A3" },
-    { name: "Napisać dobrą apkę w React", time: 55, isComplete: false, id: "A4" },
-    { name: "Ambitnie dzialać dalej", time: 5, isComplete: false, id: "A5" },
-    { name: "Wykonać stage 4 i 5", time: 35, isComplete: false, id: "A6" },
+    { name: "Odkurzyć", time: 30, timeWhenAdded: new Date(1732000040000), id: "A1X" },
+    { name: "Zrobić todosa", time: 15, timeWhenAdded: new Date(1731000550000), id: "A2" },
+    { name: "Bezbłędnie pisać", time: 60, timeWhenAdded: new Date(1730000102000), id: "A3" },
+    { name: "Napisać dobrą apkę w React", time: 55, timeWhenAdded: new Date(1732105502000), id: "A4" },
+    { name: "Ambitnie dzialać dalej", time: 25, timeWhenAdded: new Date(1722200044410), id: "A5" },
+    { name: "Wykonać stage 4 i 5", time: 35, timeWhenAdded: new Date(1741134009800), id: "A6" },
   ]);
 
   useEffect(() => {
@@ -62,6 +62,12 @@ const List = (props: { items: any[] }) => {
     setTodos(sortTodos);
   };
 
+  const sortTodosByDate = () => {
+    const sortTodos = [...todos];
+    sortTodos.sort((a, b) => a.timeWhenAdded.getTime() - b.timeWhenAdded.getTime());
+    setTodos(sortTodos);
+  };
+
   return (
     <ul className="list">
       <h3 className="list-title">Lista zadań</h3>
@@ -71,13 +77,16 @@ const List = (props: { items: any[] }) => {
       <button className="form-button" onClick={sortTodosByTime}>
         Sortuj po czasie trwania
       </button>
+      <button className="form-button" onClick={sortTodosByDate}>
+        Sortuj po dacie
+      </button>
       {todos.map((todo) => (
         <Item
           key={todo.id}
           id={todo.id}
           todosName={todo.name}
           todosTime={todo.time}
-          isCompleted={todo.isComplete}
+          timeWhenAdded={todo.timeWhenAdded.toLocaleString()}
           isEditing={editTodoId === todo.id}
           editText={editTodoId === todo.id ? editText : ""}
           editTime={editTodoId === todo.id ? editTime : 0}
@@ -89,7 +98,7 @@ const List = (props: { items: any[] }) => {
           onEditTimeChange={(e) => setEditTime(Number(e.target.value))}
         />
       ))}
-      <h3>Suma zadań do zrobienia: <b>{todos.length}</b></h3>
+      <h3 className="list-title">Suma zadań do zrobienia: <b>{todos.length}</b></h3>
     </ul>
   );
 };

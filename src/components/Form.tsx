@@ -9,13 +9,14 @@ type FormError = {
   message: string;
 };
 
-const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
+const Form = (props: { onAddItem: (newTodo: { id: string; name: string; time: number; isComplete: boolean; timeWhenAdded: Date }) => void }) => {
   const [todosName, setTodosName] = useState("");
   const [todosTime, setTodosTime] = useState("");
   const [error, setError] = useState<FormError | null>(null);
 
   const addItem = (event: { preventDefault: () => void }) => {
     event.preventDefault();
+
     if (todosName.trim().length === 0) {
       setError({
         title: "Wprowadź nazwę",
@@ -23,18 +24,28 @@ const Form = (props: { onAddItem: (arg0: string, arg1: string) => void }) => {
       });
       return;
     }
+
     if (todosTime < "0") {
       setError({
         title: "Błędny czas",
         message: "Wprowadź prawidłowy czas (większy od 0)",
       });
       return;
-    } else {
-      props.onAddItem(todosName, todosTime);
-      setTodosName("");
-      setTodosTime("");
     }
+
+    const newTodo = {
+      id: Math.random().toString(),
+      name: todosName,
+      time: parseInt(todosTime),
+      isComplete: false,
+      timeWhenAdded: new Date(),
+    };
+
+    props.onAddItem(newTodo);
+    setTodosName("");
+    setTodosTime("");
   };
+
 
   const errorHandler = () => {
     setError(null);
