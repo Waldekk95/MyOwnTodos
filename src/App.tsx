@@ -7,19 +7,18 @@ type Item = {
   id: string;
   name: string;
   time: number;
+  timeWhenAdded: Date;
 };
 
 function App() {
   const [itemList, setItemList] = useState<Item[]>([]);
 
-  const addTodosHandler = (uName: any, uTime: any) => {
+  const addTodosHandler = (newTodo: Item) => {
     setItemList((prevItemsList) => {
-      return [
-        ...prevItemsList,
-        { name: uName, time: uTime, id: Math.random().toString() },
-      ];
+      return [...prevItemsList, newTodo];
     });
   };
+
   return (
     <div>
       <Form onAddItem={addTodosHandler} />

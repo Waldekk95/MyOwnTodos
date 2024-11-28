@@ -5,7 +5,7 @@ type Props = {
   id: string;
   todosName: string;
   todosTime: number;
-  isCompleted: boolean;
+  timeWhenAdded: string;
   isEditing: boolean;
   editText: string;
   editTime: number;
@@ -21,7 +21,7 @@ const Item = ({
   id,
   todosName,
   todosTime,
-  isCompleted,
+  timeWhenAdded,
   isEditing,
   editText,
   editTime,
@@ -85,7 +85,7 @@ const Item = ({
           </>
         )}
       </div>
-      {/* <span className="item-date">{timeWhenAdd}</span> */}
+      <span className="item-date">Dodano: {timeWhenAdded}</span>
     </li>
   );
 };
