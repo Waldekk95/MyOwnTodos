@@ -16,11 +16,15 @@
   z-index: 100;
   overflow: hidden;
   background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-header {
   background: #4f005f;
   padding: 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .modal-header h2 {
@@ -35,4 +39,14 @@
 .modal-button {
   padding: 5px 15px;
   margin-top: 10px;
+  background-color: #4f005f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-button:hover {
+  background-color: #6a007a;
 }

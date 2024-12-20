@@ -1,5 +1,5 @@
 .item {
-  border: 1px solid black;
+  border: 1px solid #4f005f;
   margin-bottom: 15px;
   padding: 15px;
   list-style: none;
@@ -8,18 +8,22 @@
   align-items: center;
   font-size: 1.1em;
   border-radius: 10px;
-  text-wrap: nowrap;
+  background-color: #444;
+  color: #fff;
   position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .item:hover {
-  opacity: 75%;
-  border-color: greenyellow;
+  background-color: #555;
+  border-color: #6a007a;
 }
 
 .item-checkbox {
   width: 20px;
   height: 20px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 .item-left {
@@ -36,32 +40,53 @@
 
 .item-name {
   padding-left: 10px;
-  text-wrap: balance;
   max-height: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .item-edit-input {
-  padding: 1px;
+  padding: 5px;
   margin-right: 5px;
   width: 65%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .item-edit-input_number {
-  width: 40px;
+  width: 60px;
 }
 
 .item-button {
-  padding: 0 5px;
+  padding: 5px 10px;
   margin-left: 5px;
   cursor: pointer;
+  border-radius: 5px;
+  background-color: #4f005f;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.item-button:hover {
+  background-color: #6a007a;
 }
 
 .item-button_close {
   margin-left: 5px;
+  padding: 0;
   width: 22px;
   height: 22px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.item-button_close:hover {
+  background-color: #ff6666;
 }
 
 .item-date {
@@ -69,4 +94,5 @@
   bottom: 0;
   right: 5px;
   font-size: 0.7em;
+  color: #ccc;
 }
