@@ -1,27 +1,39 @@
 .form {
-  width: clamp(350px, 50%, 800px);
-  padding: 10px;
+  width: clamp(360px, 50%, 800px);
+  padding: 20px;
   margin: 30px auto;
-  background-color: rgb(156, 77, 77);
+  background-color: #333;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .form-input {
-  width: 90%;
+  width: 100%;
   margin: 10px 0;
-  padding: 5px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .form-input__name {
-  font-size: 1.5em;
-  display: inline-block;
+  font-size: 1.2em;
+  display: block;
   font-weight: bold;
+  color: #fff;
+  margin-bottom: 5px;
 }
 
 .form-button {
-  margin: 10px 10px 10px 0;
-  padding: 5px 10px;
+  margin: 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
+  background-color: #4f005f;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #6a007a;
 }
