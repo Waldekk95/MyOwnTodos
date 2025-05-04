@@ -31,9 +31,7 @@ const List = (props: { items: any[] }) => {
 
   const saveEdit = (id: string) => {
     setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, name: editText, time: editTime } : todo
-      )
+      prevTodos.map((todo) => (todo.id === id ? { ...todo, name: editText, time: editTime } : todo))
     );
     setEditTodoId(null);
     setEditText("");
@@ -98,7 +96,9 @@ const List = (props: { items: any[] }) => {
           onEditTimeChange={(e) => setEditTime(Number(e.target.value))}
         />
       ))}
-      <h3 className="list-title">Suma zadań do zrobienia: <b>{todos.length}</b></h3>
+      <h3 className="list-title">
+        Suma zadań do zrobienia: <b>{todos.length}</b>
+      </h3>
     </ul>
   );
 };

@@ -9,7 +9,15 @@ type FormError = {
   message: string;
 };
 
-const Form = (props: { onAddItem: (newTodo: { id: string; name: string; time: number; isComplete: boolean; timeWhenAdded: Date }) => void }) => {
+const Form = (props: {
+  onAddItem: (newTodo: {
+    id: string;
+    name: string;
+    time: number;
+    isComplete: boolean;
+    timeWhenAdded: Date;
+  }) => void;
+}) => {
   const [todosName, setTodosName] = useState("");
   const [todosTime, setTodosTime] = useState("");
   const [error, setError] = useState<FormError | null>(null);
@@ -46,7 +54,6 @@ const Form = (props: { onAddItem: (newTodo: { id: string; name: string; time: nu
     setTodosTime("");
   };
 
-
   const errorHandler = () => {
     setError(null);
   };
@@ -71,9 +78,7 @@ const Form = (props: { onAddItem: (newTodo: { id: string; name: string; time: nu
             setTodosName(evt.target.value);
           }}
         ></input>
-        <label className="form-input__name">
-          Szacowany czas wykonania zadania
-        </label>
+        <label className="form-input__name">Szacowany czas wykonania zadania</label>
         <input
           placeholder="Wartość liczbowa w minutach"
           className="form-input"
