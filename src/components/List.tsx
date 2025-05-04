@@ -7,10 +7,12 @@ const List = (props: { items: any[] }) => {
     { name: "Odkurzyć", time: 30, timeWhenAdded: new Date(1732000040000), id: "A1X" },
     { name: "Zrobić todosa", time: 15, timeWhenAdded: new Date(1731000550000), id: "A2" },
     { name: "Bezbłędnie pisać", time: 60, timeWhenAdded: new Date(1730000102000), id: "A3" },
-    { name: "Napisać dobrą apkę w React", time: 55, timeWhenAdded: new Date(1732105502000), id: "A4" },
+    { name: "Napisać dobrą apkę", time: 55, timeWhenAdded: new Date(1732105502000), id: "A4" },
     { name: "Ambitnie dzialać dalej", time: 25, timeWhenAdded: new Date(1722200044410), id: "A5" },
     { name: "Wykonać stage 4 i 5", time: 35, timeWhenAdded: new Date(1741134009800), id: "A6" },
   ]);
+
+  const [isAscending, setIsAscending] = useState(true);
 
   useEffect(() => {
     if (props.items.length > 0) {
@@ -50,19 +52,28 @@ const List = (props: { items: any[] }) => {
 
   const sortTodosByName = () => {
     const sortTodos = [...todos];
-    sortTodos.sort((a, b) => a.name.localeCompare(b.name));
+    sortTodos.sort((a, b) =>
+      isAscending ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+    );
+    setIsAscending(!isAscending);
     setTodos(sortTodos);
   };
 
   const sortTodosByTime = () => {
     const sortTodos = [...todos];
-    sortTodos.sort((a, b) => a.time - b.time);
+    sortTodos.sort((a, b) => (isAscending ? a.time - b.time : b.time - a.time));
+    setIsAscending(!isAscending);
     setTodos(sortTodos);
   };
 
   const sortTodosByDate = () => {
     const sortTodos = [...todos];
-    sortTodos.sort((a, b) => a.timeWhenAdded.getTime() - b.timeWhenAdded.getTime());
+    sortTodos.sort((a, b) =>
+      isAscending
+        ? a.timeWhenAdded.getTime() - b.timeWhenAdded.getTime()
+        : b.timeWhenAdded.getTime() - a.timeWhenAdded.getTime()
+    );
+    setIsAscending(!isAscending);
     setTodos(sortTodos);
   };
 
