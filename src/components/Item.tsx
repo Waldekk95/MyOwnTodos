@@ -1,93 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Item.css";
 
-type Props = {
+type ItemProps = {
   id: string;
   todosName: string;
   todosTime: number;
   timeWhenAdded: string;
-  isEditing: boolean;
-  editText: string;
-  editTime: number;
   onDelete: (id: string) => void;
-  onStartEditing: (id: string, currentText: string, currentTime: number) => void;
-  onSaveEdit: () => void;
-  onCancelEdit: () => void;
-  onEditTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onEditTimeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onEdit: (id: string, updatedName: string, updatedTime: number) => void;
 };
 
-const Item = ({
+const Item: React.FC<ItemProps> = ({
   id,
   todosName,
   todosTime,
   timeWhenAdded,
-  isEditing,
-  editText,
-  editTime,
   onDelete,
-  onStartEditing,
-  onSaveEdit,
-  onCancelEdit,
-  onEditTextChange,
-  onEditTimeChange,
-}: Props) => {
+  onEdit,
+}) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editName, setEditName] = useState(todosName);
+  const [editTime, setEditTime] = useState(todosTime);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const saveEditHandler = () => {
+    onEdit(id, editName, editTime);
+    setIsEditing(false);
+  };
+
+  const toggleCheckbox = () => {
+    setIsChecked((prev) => !prev);
+  };
+
   return (
-    <li className="item" key={id}>
-      <div className="item-left">
-        <input type="checkbox" className="item-checkbox"></input>
-        {isEditing ? (
-          <>
+    <li className={`item ${isChecked ? "item-checked" : ""}`}>
+      {isEditing ? (
+        <div className="item-edit">
+          <input
+            className="item-edit-input"
+            type="text"
+            value={editName}
+            onChange={(e) => setEditName(e.target.value)}
+          />
+          <input
+            className="item-edit-input"
+            type="number"
+            value={editTime}
+            onChange={(e) => setEditTime(Number(e.target.value))}
+          />
+          <button className="item-button" onClick={saveEditHandler}>
+            Zapisz
+          </button>
+          <button className="item-button" onClick={() => setIsEditing(false)}>
+            Anuluj
+          </button>
+        </div>
+      ) : (
+        <>
+          <div>
             <input
-              type="text"
-              value={editText}
-              onChange={onEditTextChange}
-              className="item-edit-input"
-              placeholder="Nowa nazwa"
+              type="checkbox"
+              className="item-checkbox"
+              checked={isChecked}
+              onChange={toggleCheckbox}
             />
-            <input
-              type="number"
-              value={editTime}
-              onChange={onEditTimeChange}
-              className="item-edit-input item-edit-input_number"
-              placeholder="Nowy czas"
-              min="1"
-            />
-          </>
-        ) : (
-          <p className="item-name">
-            {`${todosName} `}
-            {`(${todosTime} minut)`}
-          </p>
-        )}
-      </div>
-      <div className="item-right">
-        {isEditing ? (
-          <>
-            <button className="item-button" onClick={onSaveEdit}>
-              Zapisz
-            </button>
-            <button className="item-button" onClick={onCancelEdit}>
-              Anuluj
-            </button>
-          </>
-        ) : (
-          <>
-            <button
-              className="item-button"
-              onClick={() => onStartEditing(id, todosName, todosTime)}
-            >
+            <h4 className="item-name">{todosName}</h4>
+          </div>
+          <div className="item-actions">
+            <p className="item-time">Czas: {todosTime} min</p>
+            <button className="item-button" onClick={() => setIsEditing(true)}>
               Edytuj
             </button>
-            <button className="item-button_close" onClick={() => onDelete(id)}>
+            <button className="item-button item-button_close" onClick={() => onDelete(id)}>
               X
             </button>
-          </>
-        )}
-      </div>
-      <span className="item-date">Dodano: {timeWhenAdded}</span>
+            <p className="item-date">Dodano: {timeWhenAdded}</p>
+          </div>
+        </>
+      )}
     </li>
   );
 };
 
 export default Item;
+

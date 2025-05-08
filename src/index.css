@@ -10,4 +10,14 @@ html {
 
 body {
   background-color: rgb(44, 44, 44);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #4f005f;
+  color: white;
+  width: 100%;
 }

@@ -28,23 +28,18 @@
   cursor: pointer;
 }
 
-.item-left {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-}
-
-.item-right {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
 .item-name {
+  display: inline;
+  font-size: 0.8em;
   padding-left: 10px;
   max-height: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.item-time {
+  font-size: 0.8em;
+  display: inline;
 }
 
 .item-edit-input {

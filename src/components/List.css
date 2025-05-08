@@ -1,5 +1,5 @@
-.list {
-  width: clamp(360px, 50%, 800px);
+.list-container {
+  width: clamp(360px, 60%, 800px);
   min-height: 100px;
   padding: 20px;
   margin: 30px auto;

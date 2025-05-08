@@ -1,5 +1,5 @@
 .form {
-  width: clamp(360px, 50%, 800px);
+  width: clamp(360px, 60%, 800px);
   padding: 20px;
   margin: 30px auto;
   background-color: #333;
